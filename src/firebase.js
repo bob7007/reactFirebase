@@ -1,10 +1,8 @@
 
-  //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-  //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
 
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+//import "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyD4j56QxfvA_9hiovcvSsIhxiU6-DlNdPI",
     authDomain: "fb-crud-react-dfed4.firebaseapp.com",
@@ -20,3 +18,5 @@ const firebaseConfig = {
   //firebase.initializeApp(firebaseConfig);
   const fb = firebase.initializeApp(firebaseConfig);
   export const db = fb.firestore();
+
+  
