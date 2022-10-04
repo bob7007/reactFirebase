@@ -19,11 +19,12 @@ const LinkForm = (props) => {
         //console.log(e.target);
     }
 
-    const handleSubmit = e =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
         props.addOrEditLink(values);
         setValues({...initialStateValues});
-        //console.log(values);
+
+
     }
 
 
@@ -47,7 +48,8 @@ const LinkForm = (props) => {
                     className='form-control' 
                     placeholder='http//sample.com' 
                     name="url"
-                    value={values.url}/>             
+                    value={values.url}
+                    required/>             
             </div><br></br>
 
             <div className="form-group input-group">
@@ -61,7 +63,8 @@ const LinkForm = (props) => {
                     className='form-control' 
                     placeholder='Website Name' 
                     name="name"
-                    value={values.name}/>     
+                    value={values.name}
+                    required/>     
             </div><br></br>
 
             <div className="form-group">

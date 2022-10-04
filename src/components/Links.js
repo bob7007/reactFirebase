@@ -7,6 +7,13 @@ const Links = () => {
     const [links, setLinks] = useState([]);
     const addOrEditLink = async(LinkObject) => {
 
+        
+        if(LinkObject.url.slice(0,8)==="https://")
+        {
+            LinkObject.url = LinkObject.url.slice(8)
+            
+        }
+
         await db.collection('links').doc().set(LinkObject);
         console.log(LinkObject);
         console.log("saved to data base");
@@ -32,19 +39,31 @@ const Links = () => {
         getLinks();
     },[]);
 
+    const  onDelete = async id =>{
 
+        if(window.confirm("Delete Entry?"))
+        {
+           await db.collection('links').doc(id).delete();
+
+        }
+
+    }
       
       return(
       <div>
       <LinkForm addOrEditLink={addOrEditLink}/>
       <div className="col-md-12">
-        {links.map(link => {
-            return<div style={{textAlign:'center'}} className="card mb-1">
+     
+
+        {links.sort((a, b) =>a.name > b.name ? 1 : -1,).map(link => {    
+            return<div style={{textAlign:'center'}} className="card mb-1" key={link.id}>
                 <div className="card-body">
+                    <div className="d-flex justify-content-between">   
+                        <i onClick={()=>{onDelete(link.id)}} style={{cursor: "pointer", color:"red"}} className='material-icons'>close</i>
+                    </div>
                     <h4>{link.name}</h4>
                     <p>{link.description}</p>
-                    <a href={'//'+link.url} target="_blank" rel="noreferrer">Go to Page</a>
-                    
+                    <a href={'https://'+link.url} target="_blank" rel="noreferrer">Go to Page</a>
                 </div>
             </div>
         })}
